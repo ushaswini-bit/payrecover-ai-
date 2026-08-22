@@ -618,6 +618,15 @@ function closePanel() {
 
     document.getElementById("aiPanel").style.display = "none";
 
+}  
+    function sendRecoveryReminder() {
+
+    document.getElementById("reminderStatus").innerText =
+        "✅ Recovery reminder sent successfully!";
+
+    document.getElementById("status").innerHTML =
+        "<strong>Recovery Status:</strong> " +
+        "<span style='color:green;'>Reminder Sent</span>";
 }
 
 </script>
