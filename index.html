@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
+
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
@@ -101,7 +103,7 @@ body {
     color: #6b7280;
 }
 
-/* MAIN CARDS */
+/* MAIN DASHBOARD CARDS */
 
 .cards {
     display: grid;
@@ -352,7 +354,9 @@ th {
 }
 
 </style>
+
 </head>
+
 
 <body>
 
@@ -392,6 +396,7 @@ th {
 
 <div class="main">
 
+
     <div class="heading">
 
         <h1>Revenue Recovery Dashboard</h1>
@@ -413,8 +418,9 @@ th {
                 Failed Amount
             </div>
 
-            <div class="card-value">
-                ₹2,45,000
+            <div class="card-value"
+                 id="failedAmount">
+                ₹16,497
             </div>
 
         </div>
@@ -426,8 +432,9 @@ th {
                 Failed Payments
             </div>
 
-            <div class="card-value">
-                128
+            <div class="card-value"
+                 id="failedPayments">
+                3
             </div>
 
         </div>
@@ -439,8 +446,9 @@ th {
                 Recoverable Amount
             </div>
 
-            <div class="card-value">
-                ₹1,82,500
+            <div class="card-value"
+                 id="recoverableAmount">
+                ₹16,497
             </div>
 
         </div>
@@ -452,7 +460,8 @@ th {
                 AI Recovery Rate
             </div>
 
-            <div class="card-value">
+            <div class="card-value"
+                 id="recoveryRate">
                 74%
             </div>
 
@@ -473,8 +482,9 @@ th {
 
                 <h3>💰 Total Outstanding</h3>
 
-                <p class="recovery-value">
-                    ₹1,25,000
+                <p class="recovery-value"
+                   id="outstandingAmount">
+                    ₹16,497
                 </p>
 
             </div>
@@ -484,7 +494,8 @@ th {
 
                 <h3>👥 Customers to Recover</h3>
 
-                <p id="customerCount" class="recovery-value">
+                <p id="customerCount"
+                   class="recovery-value">
                     24
                 </p>
 
@@ -495,7 +506,8 @@ th {
 
                 <h3>⚠️ High Priority Cases</h3>
 
-                <p id="highPriorityCount" class="recovery-value">
+                <p id="highPriorityCount"
+                   class="recovery-value">
                     8
                 </p>
 
@@ -506,7 +518,8 @@ th {
 
                 <h3>✅ Reminders Sent</h3>
 
-                <p id="reminderCount" class="recovery-value">
+                <p id="reminderCount"
+                   class="recovery-value">
                     16
                 </p>
 
@@ -517,62 +530,109 @@ th {
     </div>
 
 
-    <!-- FAILED PAYMENTS -->
-<div class="payments" style="margin-bottom:30px;">
+    <!-- ADD FAILED PAYMENT -->
 
-    <h2>➕ Add Failed Payment</h2>
+    <div class="payments">
 
-    <div style="display:grid; grid-template-columns:1fr 1fr 1fr auto; gap:15px; align-items:end;">
+        <h2>➕ Add Failed Payment</h2>
 
-        <div>
-            <label>Customer Name</label>
-            <input
-                type="text"
-                id="newCustomer"
-                placeholder="Enter customer name"
-                style="width:100%; padding:12px; margin-top:7px; border:1px solid #ddd; border-radius:7px;">
+        <div style="
+            display:grid;
+            grid-template-columns:1fr 1fr 1fr auto;
+            gap:15px;
+            align-items:end;
+        ">
+
+            <div>
+
+                <label>Customer Name</label>
+
+                <input
+                    type="text"
+                    id="newCustomer"
+                    placeholder="Enter customer name"
+                    style="
+                        width:100%;
+                        padding:12px;
+                        margin-top:7px;
+                        border:1px solid #ddd;
+                        border-radius:7px;
+                    "
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Amount</label>
+
+                <input
+                    type="number"
+                    id="newAmount"
+                    placeholder="Enter amount"
+                    style="
+                        width:100%;
+                        padding:12px;
+                        margin-top:7px;
+                        border:1px solid #ddd;
+                        border-radius:7px;
+                    "
+                >
+
+            </div>
+
+
+            <div>
+
+                <label>Failure Reason</label>
+
+                <select
+                    id="newReason"
+                    style="
+                        width:100%;
+                        padding:12px;
+                        margin-top:7px;
+                        border:1px solid #ddd;
+                        border-radius:7px;
+                    "
+                >
+
+                    <option>Insufficient Funds</option>
+                    <option>Card Expired</option>
+                    <option>Bank Declined</option>
+                    <option>Technical Error</option>
+                    <option>Payment Timeout</option>
+
+                </select>
+
+            </div>
+
+
+            <button
+                onclick="addFailedPayment()"
+                class="analyze-btn"
+            >
+                Add Payment
+            </button>
+
         </div>
 
-        <div>
-            <label>Amount</label>
-            <input
-                type="number"
-                id="newAmount"
-                placeholder="Enter amount"
-                style="width:100%; padding:12px; margin-top:7px; border:1px solid #ddd; border-radius:7px;">
-        </div>
-
-        <div>
-            <label>Failure Reason</label>
-            <select
-                id="newReason"
-                style="width:100%; padding:12px; margin-top:7px; border:1px solid #ddd; border-radius:7px;">
-
-                <option>Insufficient Funds</option>
-                <option>Card Expired</option>
-                <option>Bank Declined</option>
-                <option>Technical Error</option>
-                <option>Payment Timeout</option>
-
-            </select>
-        </div>
-
-        <button
-            onclick="addFailedPayment()"
-            class="analyze-btn">
-            Add Payment
-        </button>
+        <p
+            id="addPaymentStatus"
+            style="margin-top:12px;"
+        ></p>
 
     </div>
 
-    <p id="addPaymentStatus" style="margin-top:12px;"></p>
 
-</div>
+    <!-- FAILED PAYMENTS -->
+
     <div class="payments">
 
         <h2>Recent Failed Payments</h2>
 
-        <table>
+        <table id="paymentTable">
 
             <tr>
 
@@ -600,15 +660,16 @@ th {
                 <td>
 
                     <button
-                    class="analyze-btn"
-                    onclick="analyzePayment(
-                    'Rahul Sharma',
-                    '₹4,999',
-                    'Insufficient Funds'
-                    )">
-
-                    Analyze
-
+                        class="analyze-btn"
+                        onclick="
+                        analyzePayment(
+                        'Rahul Sharma',
+                        '₹4,999',
+                        'Insufficient Funds',
+                        this.closest('tr')
+                        )"
+                    >
+                        Analyze
                     </button>
 
                 </td>
@@ -631,15 +692,16 @@ th {
                 <td>
 
                     <button
-                    class="analyze-btn"
-                    onclick="analyzePayment(
-                    'Priya Singh',
-                    '₹2,499',
-                    'Card Expired'
-                    )">
-
-                    Analyze
-
+                        class="analyze-btn"
+                        onclick="
+                        analyzePayment(
+                        'Priya Singh',
+                        '₹2,499',
+                        'Card Expired',
+                        this.closest('tr')
+                        )"
+                    >
+                        Analyze
                     </button>
 
                 </td>
@@ -662,15 +724,16 @@ th {
                 <td>
 
                     <button
-                    class="analyze-btn"
-                    onclick="analyzePayment(
-                    'Arun Kumar',
-                    '₹8,999',
-                    'Bank Declined'
-                    )">
-
-                    Analyze
-
+                        class="analyze-btn"
+                        onclick="
+                        analyzePayment(
+                        'Arun Kumar',
+                        '₹8,999',
+                        'Bank Declined',
+                        this.closest('tr')
+                        )"
+                    >
+                        Analyze
                     </button>
 
                 </td>
@@ -719,18 +782,20 @@ th {
 
     <!-- AI RECOVERY PANEL -->
 
-    <div class="ai-panel" id="aiPanel">
+    <div class="ai-panel"
+         id="aiPanel">
 
         <div class="ai-header">
 
-            <h2>🤖 AI Recovery Analysis</h2>
+            <h2>
+                🤖 AI Recovery Analysis
+            </h2>
 
             <button
-            class="close-btn"
-            onclick="closePanel()">
-
-            Close
-
+                class="close-btn"
+                onclick="closePanel()"
+            >
+                Close
             </button>
 
         </div>
@@ -740,7 +805,9 @@ th {
 
             <div class="info-box">
 
-                <span>Customer</span>
+                <span>
+                    Customer
+                </span>
 
                 <strong id="customer"></strong>
 
@@ -749,7 +816,9 @@ th {
 
             <div class="info-box">
 
-                <span>Amount</span>
+                <span>
+                    Amount
+                </span>
 
                 <strong id="amount"></strong>
 
@@ -758,7 +827,9 @@ th {
 
             <div class="info-box">
 
-                <span>Failure Reason</span>
+                <span>
+                    Failure Reason
+                </span>
 
                 <strong id="reason"></strong>
 
@@ -769,7 +840,9 @@ th {
 
         <div class="recommendation">
 
-            <h3>Recovery Recommendation</h3>
+            <h3>
+                Recovery Recommendation
+            </h3>
 
             <div id="analysis"></div>
 
@@ -778,9 +851,12 @@ th {
 
         <div class="message">
 
-            <div class="status" id="status">
+            <div class="status"
+                 id="status">
 
-                <strong>Recovery Status:</strong>
+                <strong>
+                    Recovery Status:
+                </strong>
 
                 <span style="color:orange;">
                     Pending
@@ -790,21 +866,23 @@ th {
 
 
             <button
-            class="action-btn"
-            onclick="sendRecoveryReminder()">
-
-            📩 Send Recovery Reminder
-
+                class="action-btn"
+                onclick="sendRecoveryReminder()"
+            >
+                📩 Send Recovery Reminder
             </button>
 
 
             <p
-            id="reminderStatus"
-            style="margin-top:12px;">
+                id="reminderStatus"
+                style="margin-top:12px;"
+            >
             </p>
 
 
-            <h3>Suggested Customer Message</h3>
+            <h3>
+                Suggested Customer Message
+            </h3>
 
             <p id="message"></p>
 
@@ -819,17 +897,25 @@ th {
 
 <script>
 
+/* ===============================
+   GLOBAL VARIABLES
+================================ */
+
 let customerCount = 24;
 let highPriorityCount = 8;
 let reminderCount = 16;
 
-let currentPaymentRow = null;
-let currentHistoryRow = null;
 
+/* ===============================
+   ANALYZE PAYMENT
+================================ */
 
-/* ANALYZE PAYMENT */
-
-function analyzePayment(customer, amount, reason, selectedRow = null) {
+function analyzePayment(
+    customer,
+    amount,
+    reason,
+    selectedRow = null
+) {
 
     document.getElementById("customer").innerText =
         customer;
@@ -841,36 +927,8 @@ function analyzePayment(customer, amount, reason, selectedRow = null) {
         reason;
 
 
-    /* REMEMBER CURRENT PAYMENT */
-
-    if (selectedRow) {
-
-        currentPaymentRow = selectedRow;
-
-    }
-    else {
-
-        let paymentRows =
-            document.querySelectorAll(".payments table tr");
-
-        for (let i = 1; i < paymentRows.length; i++) {
-
-            if (
-                paymentRows[i].cells[0] &&
-                paymentRows[i].cells[0].innerText === customer &&
-                paymentRows[i].cells[1] &&
-                paymentRows[i].cells[1].innerText === amount
-            ) {
-
-                currentPaymentRow =
-                    paymentRows[i];
-
-                break;
-            }
-
-        }
-
-    }
+    let currentPaymentRow =
+        selectedRow;
 
 
     /* CUSTOMER MESSAGE */
@@ -887,14 +945,7 @@ function analyzePayment(customer, amount, reason, selectedRow = null) {
         message;
 
 
-    /* AI ANALYSIS */
-
-    let priority;
-    let riskScore;
-    let action;
-
-
-    /* GET NUMERIC AMOUNT */
+    /* NUMERIC AMOUNT */
 
     let numericAmount =
         parseFloat(
@@ -902,169 +953,151 @@ function analyzePayment(customer, amount, reason, selectedRow = null) {
         );
 
 
-    /* PRIORITY LOGIC */
+    let priority;
+    let riskScore;
+    let action;
+
+
+    /* AI PRIORITY */
 
     if (numericAmount >= 50000) {
 
         priority = "HIGH";
-
         riskScore = 85;
-
-        action =
-            "Immediate recovery follow-up";
-
-
-        highPriorityCount++;
-
-        document.getElementById("highPriorityCount").innerText =
-            highPriorityCount;
+        action = "Immediate recovery follow-up";
 
     }
 
     else if (numericAmount >= 20000) {
 
         priority = "MEDIUM";
-
         riskScore = 60;
-
-        action =
-            "Send reminder and follow-up";
+        action = "Send reminder and follow-up";
 
     }
 
     else {
 
         priority = "LOW";
-
         riskScore = 30;
-
-        action =
-            "Send automated reminder";
+        action = "Send automated reminder";
 
     }
 
 
-    /* DISPLAY AI ANALYSIS */
+    /* SHOW AI RESULT */
 
-    let analysis =
-        document.getElementById("analysis");
+    document.getElementById("analysis").innerHTML =
 
+        "<strong>Recovery Priority:</strong> " +
+        priority +
 
-    if (analysis) {
+        "<br><strong>Risk Score:</strong> " +
+        riskScore +
+        "/100" +
 
-        analysis.innerHTML =
-
-            "<strong>Recovery Priority:</strong> " +
-            priority +
-
-            "<br><strong>Risk Score:</strong> " +
-            riskScore +
-            "/100" +
-
-            "<br><strong>Recommended Action:</strong> " +
-            action;
-
-    }
+        "<br><strong>Recommended Action:</strong> " +
+        action;
 
 
-    /* ADD OR UPDATE HISTORY */
+    /* HISTORY */
 
     let historyTable =
         document.getElementById("historyTable");
 
 
-    if (
-        currentPaymentRow &&
-        currentPaymentRow.historyRow
-    ) {
-
-        currentHistoryRow =
-            currentPaymentRow.historyRow;
-
-        currentHistoryRow.cells[2].innerText =
-            priority;
-
-        currentHistoryRow.cells[3].innerText =
-            riskScore + "/100";
-
-    }
-
-    else {
-
-        let row =
-            document.createElement("tr");
+    let historyRow =
+        document.createElement("tr");
 
 
-        row.innerHTML =
+    historyRow.innerHTML =
 
-            "<td>" +
-            customer +
-            "</td>" +
+        "<td>" +
+        customer +
+        "</td>" +
 
-            "<td>" +
-            amount +
-            "</td>" +
+        "<td>" +
+        amount +
+        "</td>" +
 
-            "<td>" +
-            priority +
-            "</td>" +
+        "<td>" +
+        priority +
+        "</td>" +
 
-            "<td>" +
-            riskScore +
-            "/100" +
-            "</td>" +
+        "<td>" +
+        riskScore +
+        "/100" +
+        "</td>" +
 
-            "<td>Pending</td>";
-
-
-        historyTable.appendChild(row);
+        "<td>Pending</td>";
 
 
-        currentHistoryRow = row;
+    historyTable.appendChild(historyRow);
 
 
-        if (currentPaymentRow) {
+    /* STORE ROW REFERENCES */
 
-            currentPaymentRow.historyRow =
-                row;
+    currentPaymentRow =
+        currentPaymentRow;
 
-        }
+    historyRow.paymentRow =
+        currentPaymentRow;
 
-    }
+    currentPaymentRow.historyRow =
+        historyRow;
 
 
-    /* SHOW AI PANEL */
+    /* SHOW PANEL */
 
     document.getElementById("aiPanel").style.display =
         "block";
 
 
-    /* ADD RECOVERED BUTTON TO AI PANEL */
+    /* RECOVER BUTTON */
 
-    createRecoveredButton();
+    createRecoveredButton(
+        currentPaymentRow,
+        historyRow
+    );
 
 
     window.scrollTo({
 
-        top:
-            document.body.scrollHeight,
+        top: document.body.scrollHeight,
 
-        behavior:
-            "smooth"
+        behavior: "smooth"
 
     });
 
 }
 
 
-/* CREATE RECOVERED BUTTON */
+/* ===============================
+   RECOVER BUTTON
+================================ */
 
-function createRecoveredButton() {
+let recoveryButtonCreated = false;
+
+function createRecoveredButton(
+    paymentRow,
+    historyRow
+) {
 
     let existingButton =
         document.getElementById("recoverButton");
 
+
     if (existingButton) {
+
+        existingButton.onclick =
+            function() {
+
+                markAsRecovered(
+                    paymentRow,
+                    historyRow
+                );
+
+            };
 
         return;
 
@@ -1075,13 +1108,6 @@ function createRecoveredButton() {
         document.querySelector(
             "#aiPanel .action-btn"
         );
-
-
-    if (!reminderButton) {
-
-        return;
-
-    }
 
 
     let recoverButton =
@@ -1109,7 +1135,14 @@ function createRecoveredButton() {
 
 
     recoverButton.onclick =
-        markAsRecovered;
+        function() {
+
+            markAsRecovered(
+                paymentRow,
+                historyRow
+            );
+
+        };
 
 
     reminderButton.parentNode.insertBefore(
@@ -1120,13 +1153,20 @@ function createRecoveredButton() {
 }
 
 
-/* MARK PAYMENT AS RECOVERED */
+/* ===============================
+   MARK AS RECOVERED
+================================ */
 
-function markAsRecovered() {
+function markAsRecovered(
+    paymentRow,
+    historyRow
+) {
 
-    if (!currentPaymentRow) {
+    if (!paymentRow) {
 
-        document.getElementById("reminderStatus").innerText =
+        document.getElementById(
+            "reminderStatus"
+        ).innerText =
             "⚠️ Please analyse a payment first.";
 
         return;
@@ -1134,24 +1174,28 @@ function markAsRecovered() {
     }
 
 
-    /* REMOVE FROM FAILED PAYMENTS */
-
-    currentPaymentRow.remove();
-
-
-    /* UPDATE RECOVERY HISTORY */
-
-    if (currentHistoryRow) {
-
-        currentHistoryRow.cells[4].innerHTML =
-            "<span style='color:green; font-weight:bold;'>" +
-            "✅ Recovered" +
-            "</span>";
-
-    }
+    let recoveredAmount =
+        parseFloat(
+            paymentRow.cells[1].innerText
+            .replace(/[^0-9.]/g, "")
+        );
 
 
-    /* UPDATE STATUS IN AI PANEL */
+    /* REMOVE PAYMENT */
+
+    paymentRow.remove();
+
+
+    /* HISTORY UPDATE */
+
+    historyRow.cells[4].innerHTML =
+
+        "<span style='color:green;font-weight:bold;'>" +
+        "✅ Recovered" +
+        "</span>";
+
+
+    /* STATUS */
 
     document.getElementById("status").innerHTML =
 
@@ -1162,44 +1206,71 @@ function markAsRecovered() {
         "</span>";
 
 
-    document.getElementById("reminderStatus").innerText =
+    document.getElementById(
+        "reminderStatus"
+    ).innerText =
         "🎉 Payment successfully recovered!";
 
 
-    /* UPDATE CUSTOMER COUNT */
+    /* CUSTOMER COUNT */
 
     if (customerCount > 0) {
 
         customerCount--;
 
-        document.getElementById("customerCount").innerText =
+        document.getElementById(
+            "customerCount"
+        ).innerText =
             customerCount;
 
     }
 
 
-    currentPaymentRow =
-        null;
+    /* UPDATE DASHBOARD */
+
+    updateDashboard();
+
+
+    /* REMOVE RECOVER BUTTON */
+
+    let button =
+        document.getElementById(
+            "recoverButton"
+        );
+
+    if (button) {
+
+        button.remove();
+
+    }
 
 }
 
 
-/* SEND RECOVERY REMINDER */
+/* ===============================
+   SEND REMINDER
+================================ */
 
 function sendRecoveryReminder() {
 
     reminderCount++;
 
 
-    document.getElementById("reminderCount").innerText =
+    document.getElementById(
+        "reminderCount"
+    ).innerText =
         reminderCount;
 
 
-    document.getElementById("reminderStatus").innerText =
+    document.getElementById(
+        "reminderStatus"
+    ).innerText =
         "✅ Recovery reminder sent successfully!";
 
 
-    document.getElementById("status").innerHTML =
+    document.getElementById(
+        "status"
+    ).innerHTML =
 
         "<strong>Recovery Status:</strong> " +
 
@@ -1207,39 +1278,41 @@ function sendRecoveryReminder() {
         "Reminder Sent" +
         "</span>";
 
-
-    /* UPDATE CURRENT HISTORY ROW */
-
-    if (currentHistoryRow) {
-
-        currentHistoryRow.cells[4].innerHTML =
-
-            "<span style='color:green;'>" +
-            "Reminder Sent" +
-            "</span>";
-
-    }
-
 }
 
 
-/* ADD FAILED PAYMENT */
+/* ===============================
+   ADD FAILED PAYMENT
+================================ */
 
 function addFailedPayment() {
 
     let customer =
-        document.getElementById("newCustomer").value.trim();
+        document.getElementById(
+            "newCustomer"
+        ).value.trim();
+
 
     let amount =
-        document.getElementById("newAmount").value.trim();
+        document.getElementById(
+            "newAmount"
+        ).value.trim();
+
 
     let reason =
-        document.getElementById("newReason").value;
+        document.getElementById(
+            "newReason"
+        ).value;
 
 
-    if (customer === "" || amount === "") {
+    if (
+        customer === "" ||
+        amount === ""
+    ) {
 
-        document.getElementById("addPaymentStatus").innerText =
+        document.getElementById(
+            "addPaymentStatus"
+        ).innerText =
             "⚠️ Please enter customer name and amount.";
 
         return;
@@ -1248,40 +1321,31 @@ function addFailedPayment() {
 
 
     let table =
-        document.querySelector(".payments table");
+        document.getElementById(
+            "paymentTable"
+        );
 
 
     let row =
         table.insertRow(-1);
 
 
-    let customerCell =
-        row.insertCell(0);
-
-    let amountCell =
-        row.insertCell(1);
-
-    let reasonCell =
-        row.insertCell(2);
-
-    let statusCell =
-        row.insertCell(3);
-
-    let actionCell =
-        row.insertCell(4);
-
-
-    customerCell.innerText =
+    row.insertCell(0).innerText =
         customer;
 
 
-    amountCell.innerText =
+    row.insertCell(1).innerText =
         "₹" +
-        Number(amount).toLocaleString("en-IN");
+        Number(amount)
+        .toLocaleString("en-IN");
 
 
-    reasonCell.innerText =
+    row.insertCell(2).innerText =
         reason;
+
+
+    let statusCell =
+        row.insertCell(3);
 
 
     statusCell.innerText =
@@ -1292,21 +1356,25 @@ function addFailedPayment() {
         "failed";
 
 
-    /* ANALYZE BUTTON */
+    let actionCell =
+        row.insertCell(4);
 
-    let button =
+
+    /* ANALYZE */
+
+    let analyzeButton =
         document.createElement("button");
 
 
-    button.innerText =
+    analyzeButton.innerText =
         "Analyze";
 
 
-    button.className =
+    analyzeButton.className =
         "analyze-btn";
 
 
-    button.onclick =
+    analyzeButton.onclick =
         function() {
 
             analyzePayment(
@@ -1314,7 +1382,8 @@ function addFailedPayment() {
                 customer,
 
                 "₹" +
-                Number(amount).toLocaleString("en-IN"),
+                Number(amount)
+                    .toLocaleString("en-IN"),
 
                 reason,
 
@@ -1326,11 +1395,11 @@ function addFailedPayment() {
 
 
     actionCell.appendChild(
-        button
+        analyzeButton
     );
 
 
-    /* REMOVE BUTTON */
+    /* REMOVE */
 
     let removeButton =
         document.createElement("button");
@@ -1357,7 +1426,18 @@ function addFailedPayment() {
 
             row.remove();
 
-            document.getElementById("addPaymentStatus").innerText =
+            if (customerCount > 0) {
+
+                customerCount--;
+
+            }
+
+            updateDashboard();
+
+
+            document.getElementById(
+                "addPaymentStatus"
+            ).innerText =
                 "🗑️ Payment removed.";
 
         };
@@ -1368,148 +1448,187 @@ function addFailedPayment() {
     );
 
 
-    /* UPDATE CUSTOMER COUNT */
+    /* CUSTOMER COUNT */
 
     customerCount++;
 
 
-    document.getElementById("customerCount").innerText =
+    document.getElementById(
+        "customerCount"
+    ).innerText =
         customerCount;
 
 
-    document.getElementById("addPaymentStatus").innerText =
+    /* STATUS */
+
+    document.getElementById(
+        "addPaymentStatus"
+    ).innerText =
         "✅ Failed payment added successfully.";
 
 
-    document.getElementById("newCustomer").value =
-        "";
+    /* CLEAR INPUTS */
+
+    document.getElementById(
+        "newCustomer"
+    ).value = "";
 
 
-    document.getElementById("newAmount").value =
-        "";
+    document.getElementById(
+        "newAmount"
+    ).value = "";
+
+
+    updateDashboard();
 
 }
 
 
-/* ADD ACTION BUTTONS TO ORIGINAL PAYMENTS */
+/* ===============================
+   UPDATE DASHBOARD
+================================ */
 
-function setupExistingPayments() {
+function updateDashboard() {
 
     let table =
-        document.querySelector(".payments table");
+        document.getElementById(
+            "paymentTable"
+        );
 
 
     if (!table) {
-
         return;
-
     }
 
 
     let rows =
-        table.querySelectorAll("tr");
+        table.querySelectorAll(
+            "tr"
+        );
 
 
-    for (let i = 1; i < rows.length; i++) {
-
-        let row =
-            rows[i];
+    let failedCount =
+        rows.length - 1;
 
 
-        let analyzeButton =
-            row.querySelector(".analyze-btn");
+    let failedAmount =
+        0;
 
 
-        if (!analyzeButton) {
+    for (
+        let i = 1;
+        i < rows.length;
+        i++
+    ) {
 
-            continue;
+        if (
+            rows[i].cells.length > 1 &&
+            rows[i].cells[3].innerText
+                .toLowerCase()
+                .includes("failed")
+        ) {
+
+            let amount =
+                parseFloat(
+                    rows[i].cells[1]
+                        .innerText
+                        .replace(/[^0-9.]/g, "")
+                );
+
+
+            if (!isNaN(amount)) {
+
+                failedAmount +=
+                    amount;
+
+            }
 
         }
 
-
-        let customer =
-            row.cells[0].innerText;
-
-        let amount =
-            row.cells[1].innerText;
-
-        let reason =
-            row.cells[2].innerText;
-
-
-        /* MAKE EXISTING ANALYZE BUTTON USE ROW */
-
-        analyzeButton.onclick =
-            function() {
-
-                analyzePayment(
-                    customer,
-                    amount,
-                    reason,
-                    row
-                );
-
-            };
-
-
-        /* REMOVE BUTTON */
-
-        let removeButton =
-            document.createElement("button");
-
-
-        removeButton.innerText =
-            "Remove";
-
-
-        removeButton.className =
-            "analyze-btn";
-
-
-        removeButton.style.background =
-            "#dc2626";
-
-
-        removeButton.style.marginLeft =
-            "6px";
-
-
-        removeButton.onclick =
-            function() {
-
-                row.remove();
-
-            };
-
-
-        row.cells[4].appendChild(
-            removeButton
-        );
-
     }
+
+
+    /* UPDATE MAIN CARDS */
+
+    document.getElementById(
+        "failedPayments"
+    ).innerText =
+        failedCount;
+
+
+    document.getElementById(
+        "failedAmount"
+    ).innerText =
+        "₹" +
+        failedAmount
+            .toLocaleString("en-IN");
+
+
+    document.getElementById(
+        "recoverableAmount"
+    ).innerText =
+        "₹" +
+        failedAmount
+            .toLocaleString("en-IN");
+
+
+    document.getElementById(
+        "outstandingAmount"
+    ).innerText =
+        "₹" +
+        failedAmount
+            .toLocaleString("en-IN");
+
+
+    /* OTHER COUNTS */
+
+    document.getElementById(
+        "highPriorityCount"
+    ).innerText =
+        highPriorityCount;
+
+
+    document.getElementById(
+        "customerCount"
+    ).innerText =
+        customerCount;
+
+
+    document.getElementById(
+        "reminderCount"
+    ).innerText =
+        reminderCount;
 
 }
 
 
-/* CLOSE AI PANEL */
+/* ===============================
+   CLOSE PANEL
+================================ */
 
 function closePanel() {
 
-    document.getElementById("aiPanel").style.display =
+    document.getElementById(
+        "aiPanel"
+    ).style.display =
         "none";
 
 }
 
 
-/* RUN WHEN PAGE LOADS */
+/* ===============================
+   PAGE LOAD
+================================ */
 
 window.onload =
     function() {
 
-        setupExistingPayments();
+        updateDashboard();
 
     };
 
 </script>
+
 </body>
+
 </html>
