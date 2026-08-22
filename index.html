@@ -530,6 +530,13 @@ th {
     <strong>Recovery Status:</strong>
     <span style="color:orange;">Pending</span>
 </div>
+                <button
+    onclick="sendRecoveryReminder()"
+    style="margin-top:20px; padding:12px 20px; border:none; border-radius:8px; cursor:pointer;">
+    📩 Send Recovery Reminder
+</button>
+
+<p id="reminderStatus" style="margin-top:12px;"></p>
                 <h3>Suggested Customer Message</h3>
 
                 <p id="message"></p>
