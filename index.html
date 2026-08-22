@@ -1,4 +1,6 @@
+```html
 <!DOCTYPE html>
+
 <html lang="en">
 
 <head>
@@ -221,6 +223,31 @@ th {
 
 .analyze-btn:hover {
     background: #1d4ed8;
+}
+
+/* PRIORITY LABELS */
+
+.priority {
+    display: inline-block;
+    padding: 5px 10px;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: bold;
+}
+
+.priority-low {
+    background: #dcfce7;
+    color: #166534;
+}
+
+.priority-medium {
+    background: #fef3c7;
+    color: #92400e;
+}
+
+.priority-high {
+    background: #fee2e2;
+    color: #991b1b;
 }
 
 /* RECOVERY HISTORY */
@@ -958,7 +985,7 @@ function analyzePayment(
     let action;
 
 
-    /* AI PRIORITY */
+    /* PRIORITY LOGIC */
 
     if (numericAmount >= 50000) {
 
@@ -985,18 +1012,50 @@ function analyzePayment(
     }
 
 
+    /* PRIORITY STYLE */
+
+    let priorityClass = "";
+
+    if (priority === "HIGH") {
+
+        priorityClass = "priority-high";
+
+    }
+
+    else if (priority === "MEDIUM") {
+
+        priorityClass = "priority-medium";
+
+    }
+
+    else {
+
+        priorityClass = "priority-low";
+
+    }
+
+
     /* SHOW AI RESULT */
 
     document.getElementById("analysis").innerHTML =
 
         "<strong>Recovery Priority:</strong> " +
-        priority +
 
-        "<br><strong>Risk Score:</strong> " +
+        "<span class='priority " +
+        priorityClass +
+        "'>" +
+        priority +
+        "</span>" +
+
+        "<br><br>" +
+
+        "<strong>Risk Score:</strong> " +
         riskScore +
         "/100" +
 
-        "<br><strong>Recommended Action:</strong> " +
+        "<br><br>" +
+
+        "<strong>Recommended Action:</strong> " +
         action;
 
 
@@ -1021,7 +1080,13 @@ function analyzePayment(
         "</td>" +
 
         "<td>" +
+
+        "<span class='priority " +
+        priorityClass +
+        "'>" +
         priority +
+        "</span>" +
+
         "</td>" +
 
         "<td>" +
@@ -1032,7 +1097,9 @@ function analyzePayment(
         "<td>Pending</td>";
 
 
-    historyTable.appendChild(historyRow);
+    historyTable.appendChild(
+        historyRow
+    );
 
 
     /* STORE ROW REFERENCES */
@@ -1063,9 +1130,11 @@ function analyzePayment(
 
     window.scrollTo({
 
-        top: document.body.scrollHeight,
+        top:
+            document.body.scrollHeight,
 
-        behavior: "smooth"
+        behavior:
+            "smooth"
 
     });
 
@@ -1076,15 +1145,15 @@ function analyzePayment(
    RECOVER BUTTON
 ================================ */
 
-let recoveryButtonCreated = false;
-
 function createRecoveredButton(
     paymentRow,
     historyRow
 ) {
 
     let existingButton =
-        document.getElementById("recoverButton");
+        document.getElementById(
+            "recoverButton"
+        );
 
 
     if (existingButton) {
@@ -1111,7 +1180,9 @@ function createRecoveredButton(
 
 
     let recoverButton =
-        document.createElement("button");
+        document.createElement(
+            "button"
+        );
 
 
     recoverButton.id =
@@ -1174,19 +1245,12 @@ function markAsRecovered(
     }
 
 
-    let recoveredAmount =
-        parseFloat(
-            paymentRow.cells[1].innerText
-            .replace(/[^0-9.]/g, "")
-        );
-
-
     /* REMOVE PAYMENT */
 
     paymentRow.remove();
 
 
-    /* HISTORY UPDATE */
+    /* UPDATE HISTORY */
 
     historyRow.cells[4].innerHTML =
 
@@ -1195,9 +1259,11 @@ function markAsRecovered(
         "</span>";
 
 
-    /* STATUS */
+    /* UPDATE STATUS */
 
-    document.getElementById("status").innerHTML =
+    document.getElementById(
+        "status"
+    ).innerHTML =
 
         "<strong>Recovery Status:</strong> " +
 
@@ -1237,6 +1303,7 @@ function markAsRecovered(
         document.getElementById(
             "recoverButton"
         );
+
 
     if (button) {
 
@@ -1337,7 +1404,7 @@ function addFailedPayment() {
     row.insertCell(1).innerText =
         "₹" +
         Number(amount)
-        .toLocaleString("en-IN");
+            .toLocaleString("en-IN");
 
 
     row.insertCell(2).innerText =
@@ -1363,7 +1430,9 @@ function addFailedPayment() {
     /* ANALYZE */
 
     let analyzeButton =
-        document.createElement("button");
+        document.createElement(
+            "button"
+        );
 
 
     analyzeButton.innerText =
@@ -1402,7 +1471,9 @@ function addFailedPayment() {
     /* REMOVE */
 
     let removeButton =
-        document.createElement("button");
+        document.createElement(
+            "button"
+        );
 
 
     removeButton.innerText =
@@ -1426,11 +1497,13 @@ function addFailedPayment() {
 
             row.remove();
 
+
             if (customerCount > 0) {
 
                 customerCount--;
 
             }
+
 
             updateDashboard();
 
@@ -1471,12 +1544,14 @@ function addFailedPayment() {
 
     document.getElementById(
         "newCustomer"
-    ).value = "";
+    ).value =
+        "";
 
 
     document.getElementById(
         "newAmount"
-    ).value = "";
+    ).value =
+        "";
 
 
     updateDashboard();
@@ -1497,7 +1572,9 @@ function updateDashboard() {
 
 
     if (!table) {
+
         return;
+
     }
 
 
@@ -1530,7 +1607,8 @@ function updateDashboard() {
 
             let amount =
                 parseFloat(
-                    rows[i].cells[1]
+                    rows[i]
+                        .cells[1]
                         .innerText
                         .replace(/[^0-9.]/g, "")
                 );
@@ -1632,3 +1710,4 @@ window.onload =
 </body>
 
 </html>
+```
