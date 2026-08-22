@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 
 <html lang="en">
@@ -987,7 +986,7 @@ function analyzePayment(
 
     /* PRIORITY LOGIC */
 
-    if (numericAmount >= 50000) {
+    if (numericAmount > 5000) {
 
         priority = "HIGH";
         riskScore = 85;
@@ -995,7 +994,7 @@ function analyzePayment(
 
     }
 
-    else if (numericAmount >= 20000) {
+    else if (numericAmount >= 3000) {
 
         priority = "MEDIUM";
         riskScore = 60;
@@ -1710,4 +1709,3 @@ window.onload =
 </body>
 
 </html>
-```
