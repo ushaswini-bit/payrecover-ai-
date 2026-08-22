@@ -287,17 +287,17 @@ th {
 
         <div style="padding:20px; border-radius:12px; background:#f5f7ff;">
             <h3>👥 Customers to Recover</h3>
-            <p style="font-size:24px; font-weight:bold;">24</p>
+           <p id="customerCount" style="font-size:24px; font-weight:bold;">24</p>
         </div>
 
         <div style="padding:20px; border-radius:12px; background:#fff4f4;">
             <h3>⚠️ High Priority Cases</h3>
-            <p style="font-size:24px; font-weight:bold;">8</p>
+           <p id="highPriorityCount" style="font-size:24px; font-weight:bold;">8</p>
         </div>
 
         <div style="padding:20px; border-radius:12px; background:#f1fff5;">
             <h3>✅ Reminders Sent</h3>
-            <p style="font-size:24px; font-weight:bold;">16</p>
+            <p id="reminderCount" style="font-size:24px; font-weight:bold;">16</p>
         </div>
 
     </div>
@@ -578,7 +578,10 @@ th {
 </div>
 
 
-<script>
+<script> 
+    let customerCount = 24;
+let highPriorityCount = 8;
+let reminderCount = 16;
 
 function analyzePayment(customer, amount, reason) {
 
@@ -602,7 +605,9 @@ function analyzePayment(customer, amount, reason) {
     let priority;
     let riskScore;
     let action;
+customerCount++;
 
+document.getElementById("customerCount").innerText = customerCount;
     let numericAmount =
         parseFloat(String(amount).replace(/[^0-9.]/g, ""));
 
@@ -610,6 +615,8 @@ function analyzePayment(customer, amount, reason) {
         priority = "HIGH";
         riskScore = 85;
         action = "Immediate recovery follow-up";
+        highPriorityCount++;
+document.getElementById("highPriorityCount").innerText = highPriorityCount;
     }
     else if (numericAmount >= 20000) {
         priority = "MEDIUM";
@@ -649,6 +656,9 @@ function closePanel() {
 }  
  
 function sendRecoveryReminder() {
+    reminderCount++;
+
+document.getElementById("reminderCount").innerText = reminderCount;
 
     document.getElementById("reminderStatus").innerText =
         "✅ Recovery reminder sent successfully!";
