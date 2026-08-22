@@ -679,7 +679,33 @@ document.getElementById("highPriorityCount").innerText = highPriorityCount;
             "<br><strong>Recommended Action:</strong> " + action;
     }
 
+let historyTable = document.getElementById("historyTable");
 
+let row = document.createElement("tr");
+
+row.innerHTML =
+    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
+    customer +
+    "</td>" +
+
+    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
+    amount +
+    "</td>" +
+
+    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
+    priority +
+    "</td>" +
+
+    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
+    riskScore +
+    "/100" +
+    "</td>" +
+
+    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
+    "Pending" +
+    "</td>";
+
+historyTable.appendChild(row);
     document.getElementById("aiPanel").style.display = "block";
 
     window.scrollTo({
