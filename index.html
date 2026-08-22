@@ -20,6 +20,8 @@ body {
     color: #1f2937;
 }
 
+/* NAVBAR */
+
 .navbar {
     height: 65px;
     background: white;
@@ -48,6 +50,8 @@ body {
     font-weight: bold;
 }
 
+/* LAYOUT */
+
 .container {
     display: flex;
     min-height: calc(100vh - 65px);
@@ -69,6 +73,7 @@ body {
     padding: 13px 12px;
     margin-bottom: 6px;
     border-radius: 7px;
+    cursor: pointer;
 }
 
 .menu:hover,
@@ -80,6 +85,8 @@ body {
     flex: 1;
     padding: 35px;
 }
+
+/* HEADINGS */
 
 .heading {
     margin-bottom: 25px;
@@ -94,9 +101,11 @@ body {
     color: #6b7280;
 }
 
+/* MAIN CARDS */
+
 .cards {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
+    grid-template-columns: repeat(4, 1fr);
     gap: 20px;
     margin-bottom: 30px;
 }
@@ -119,11 +128,58 @@ body {
     font-weight: bold;
 }
 
+/* RECOVERY DASHBOARD */
+
+.recovery-dashboard {
+    margin-bottom: 35px;
+}
+
+.recovery-dashboard h2,
+.recovery-history h2 {
+    margin-bottom: 20px;
+}
+
+.recovery-cards {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 15px;
+}
+
+.recovery-card {
+    padding: 20px;
+    border-radius: 12px;
+}
+
+.recovery-card h3 {
+    margin-bottom: 10px;
+    font-size: 16px;
+}
+
+.recovery-value {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.blue-card {
+    background: #f5f7ff;
+}
+
+.red-card {
+    background: #fff4f4;
+}
+
+.green-card {
+    background: #f1fff5;
+}
+
+/* PAYMENTS */
+
 .payments {
     background: white;
     padding: 25px;
     border-radius: 12px;
     border: 1px solid #e5e7eb;
+    margin-bottom: 30px;
 }
 
 .payments h2 {
@@ -163,6 +219,16 @@ th {
 
 .analyze-btn:hover {
     background: #1d4ed8;
+}
+
+/* RECOVERY HISTORY */
+
+.recovery-history {
+    background: white;
+    padding: 25px;
+    border-radius: 12px;
+    border: 1px solid #e5e7eb;
+    margin-bottom: 30px;
 }
 
 /* AI PANEL */
@@ -238,16 +304,43 @@ th {
     margin-bottom: 8px;
 }
 
+.action-btn {
+    margin-top: 20px;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    background: #2563eb;
+    color: white;
+}
+
+.action-btn:hover {
+    background: #1d4ed8;
+}
+
+.status {
+    margin-top: 15px;
+}
+
+/* RESPONSIVE */
+
+@media (max-width: 1000px) {
+
+    .cards,
+    .recovery-cards {
+        grid-template-columns: repeat(2, 1fr);
+    }
+
+}
+
 @media (max-width: 800px) {
 
     .sidebar {
         display: none;
     }
 
-    .cards {
-        grid-template-columns: 1fr;
-    }
-
+    .cards,
+    .recovery-cards,
     .ai-info {
         grid-template-columns: 1fr;
     }
@@ -263,6 +356,8 @@ th {
 
 <body>
 
+<!-- NAVBAR -->
+
 <div class="navbar">
 
     <div class="logo">
@@ -274,341 +369,395 @@ th {
     </div>
 
 </div>
-<div id="recoveryDashboard" style="margin:30px 0;">
 
-    <h2>📊 Recovery Dashboard</h2>
 
-    <div style="display:grid; grid-template-columns:repeat(4, 1fr); gap:15px;">
+<div class="container">
 
-        <div style="padding:20px; border-radius:12px; background:#f5f7ff;">
-            <h3>💰 Total Outstanding</h3>
-            <p style="font-size:24px; font-weight:bold;">₹1,25,000</p>
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+    <h3>Merchant Panel</h3>
+
+    <div class="menu active">Dashboard</div>
+    <div class="menu">Payments</div>
+    <div class="menu">Customers</div>
+    <div class="menu">AI Recovery</div>
+    <div class="menu">Settings</div>
+
+</div>
+
+
+<!-- MAIN CONTENT -->
+
+<div class="main">
+
+    <div class="heading">
+
+        <h1>Revenue Recovery Dashboard</h1>
+
+        <p>
+            Monitor failed payments and recover lost revenue with AI.
+        </p>
+
+    </div>
+
+
+    <!-- MAIN DASHBOARD CARDS -->
+
+    <div class="cards">
+
+        <div class="card">
+
+            <div class="card-title">
+                Failed Amount
+            </div>
+
+            <div class="card-value">
+                ₹2,45,000
+            </div>
+
         </div>
 
-        <div style="padding:20px; border-radius:12px; background:#f5f7ff;">
-            <h3>👥 Customers to Recover</h3>
-           <p id="customerCount" style="font-size:24px; font-weight:bold;">24</p>
+
+        <div class="card">
+
+            <div class="card-title">
+                Failed Payments
+            </div>
+
+            <div class="card-value">
+                128
+            </div>
+
         </div>
 
-        <div style="padding:20px; border-radius:12px; background:#fff4f4;">
-            <h3>⚠️ High Priority Cases</h3>
-           <p id="highPriorityCount" style="font-size:24px; font-weight:bold;">8</p>
+
+        <div class="card">
+
+            <div class="card-title">
+                Recoverable Amount
+            </div>
+
+            <div class="card-value">
+                ₹1,82,500
+            </div>
+
         </div>
 
-        <div style="padding:20px; border-radius:12px; background:#f1fff5;">
-            <h3>✅ Reminders Sent</h3>
-            <p id="reminderCount" style="font-size:24px; font-weight:bold;">16</p>
+
+        <div class="card">
+
+            <div class="card-title">
+                AI Recovery Rate
+            </div>
+
+            <div class="card-value">
+                74%
+            </div>
+
         </div>
 
     </div>
 
-</div>
-<div id="recoveryHistory" style="margin:40px 0;">
 
-    <h2>📋 Recovery History</h2>
+    <!-- RECOVERY DASHBOARD -->
 
-    <div style="overflow-x:auto;">
+    <div class="recovery-dashboard">
 
-        <table style="width:100%; border-collapse:collapse;">
+        <h2>📊 Recovery Dashboard</h2>
 
-            <thead>
-                <tr>
-                    <th style="padding:12px; border-bottom:1px solid #ddd; text-align:left;">
-                        Customer
-                    </th>
+        <div class="recovery-cards">
 
-                    <th style="padding:12px; border-bottom:1px solid #ddd; text-align:left;">
-                        Amount
-                    </th>
+            <div class="recovery-card blue-card">
 
-                    <th style="padding:12px; border-bottom:1px solid #ddd; text-align:left;">
-                        Priority
-                    </th>
+                <h3>💰 Total Outstanding</h3>
 
-                    <th style="padding:12px; border-bottom:1px solid #ddd; text-align:left;">
-                        Risk
-                    </th>
+                <p class="recovery-value">
+                    ₹1,25,000
+                </p>
 
-                    <th style="padding:12px; border-bottom:1px solid #ddd; text-align:left;">
-                        Status
-                    </th>
-                </tr>
-            </thead>
+            </div>
 
-            <tbody id="historyTable">
-            </tbody>
+
+            <div class="recovery-card blue-card">
+
+                <h3>👥 Customers to Recover</h3>
+
+                <p id="customerCount" class="recovery-value">
+                    24
+                </p>
+
+            </div>
+
+
+            <div class="recovery-card red-card">
+
+                <h3>⚠️ High Priority Cases</h3>
+
+                <p id="highPriorityCount" class="recovery-value">
+                    8
+                </p>
+
+            </div>
+
+
+            <div class="recovery-card green-card">
+
+                <h3>✅ Reminders Sent</h3>
+
+                <p id="reminderCount" class="recovery-value">
+                    16
+                </p>
+
+            </div>
+
+        </div>
+
+    </div>
+
+
+    <!-- FAILED PAYMENTS -->
+
+    <div class="payments">
+
+        <h2>Recent Failed Payments</h2>
+
+        <table>
+
+            <tr>
+
+                <th>Customer</th>
+                <th>Amount</th>
+                <th>Failure Reason</th>
+                <th>Status</th>
+                <th>Action</th>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Rahul Sharma</td>
+
+                <td>₹4,999</td>
+
+                <td>Insufficient Funds</td>
+
+                <td class="failed">
+                    Failed
+                </td>
+
+                <td>
+
+                    <button
+                    class="analyze-btn"
+                    onclick="analyzePayment(
+                    'Rahul Sharma',
+                    '₹4,999',
+                    'Insufficient Funds'
+                    )">
+
+                    Analyze
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Priya Singh</td>
+
+                <td>₹2,499</td>
+
+                <td>Card Expired</td>
+
+                <td class="failed">
+                    Failed
+                </td>
+
+                <td>
+
+                    <button
+                    class="analyze-btn"
+                    onclick="analyzePayment(
+                    'Priya Singh',
+                    '₹2,499',
+                    'Card Expired'
+                    )">
+
+                    Analyze
+
+                    </button>
+
+                </td>
+
+            </tr>
+
+
+            <tr>
+
+                <td>Arun Kumar</td>
+
+                <td>₹8,999</td>
+
+                <td>Bank Declined</td>
+
+                <td class="failed">
+                    Failed
+                </td>
+
+                <td>
+
+                    <button
+                    class="analyze-btn"
+                    onclick="analyzePayment(
+                    'Arun Kumar',
+                    '₹8,999',
+                    'Bank Declined'
+                    )">
+
+                    Analyze
+
+                    </button>
+
+                </td>
+
+            </tr>
 
         </table>
 
     </div>
 
-</div>
-<div class="container">
 
-    <div class="sidebar">
+    <!-- RECOVERY HISTORY -->
 
-        <h3>Merchant Panel</h3>
+    <div class="recovery-history">
 
-        <div class="menu active">Dashboard</div>
-        <div class="menu">Payments</div>
-        <div class="menu">Customers</div>
-        <div class="menu">AI Recovery</div>
-        <div class="menu">Settings</div>
+        <h2>📋 Recovery History</h2>
 
-    </div>
-
-
-    <div class="main">
-
-        <div class="heading">
-
-            <h1>Revenue Recovery Dashboard</h1>
-
-            <p>
-                Monitor failed payments and recover lost revenue with AI.
-            </p>
-
-        </div>
-
-
-        <div class="cards">
-
-            <div class="card">
-
-                <div class="card-title">
-                    Failed Amount
-                </div>
-
-                <div class="card-value">
-                    ₹2,45,000
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-title">
-                    Failed Payments
-                </div>
-
-                <div class="card-value">
-                    128
-                </div>
-
-            </div>
-
-
-            <div class="card">
-
-                <div class="card-title">
-                    Recoverable Amount
-                </div>
-
-                <div class="card-value">
-                    ₹1,82,500
-                </div>
-
-            </div>
-
-        </div>
-
-<div class="card">
-
-    <div class="card-title">
-        AI Recovery Rate
-    </div>
-
-    <div class="card-value">
-        74%
-    </div>
-
-</div>
-        <div class="payments">
-
-            <h2>Recent Failed Payments</h2>
+        <div style="overflow-x:auto;">
 
             <table>
 
-                <tr>
-                    <th>Customer</th>
-                    <th>Amount</th>
-                    <th>Failure Reason</th>
-                    <th>Status</th>
-                    <th>Action</th>
-                </tr>
+                <thead>
 
+                    <tr>
 
-                <tr>
+                        <th>Customer</th>
+                        <th>Amount</th>
+                        <th>Priority</th>
+                        <th>Risk</th>
+                        <th>Status</th>
 
-                    <td>Rahul Sharma</td>
+                    </tr>
 
-                    <td>₹4,999</td>
+                </thead>
 
-                    <td>Insufficient Funds</td>
+                <tbody id="historyTable">
 
-                    <td class="failed">
-                        Failed
-                    </td>
-
-                    <td>
-
-                        <button
-                        class="analyze-btn"
-                        onclick="analyzePayment('Rahul Sharma','₹4,999','Insufficient Funds')">
-
-                        Analyze
-
-                        </button>
-
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>Priya Singh</td>
-
-                    <td>₹2,499</td>
-
-                    <td>Card Expired</td>
-
-                    <td class="failed">
-                        Failed
-                    </td>
-
-                    <td>
-
-                        <button
-                        class="analyze-btn"
-                        onclick="analyzePayment('Priya Singh','₹2,499','Card Expired')">
-
-                        Analyze
-
-                        </button>
-
-                    </td>
-
-                </tr>
-
-
-                <tr>
-
-                    <td>Arun Kumar</td>
-
-                    <td>₹8,999</td>
-
-                    <td>Bank Declined</td>
-
-                    <td class="failed">
-                        Failed
-                    </td>
-
-                    <td>
-
-                        <button
-                        class="analyze-btn"
-                        onclick="analyzePayment('Arun Kumar','₹8,999','Bank Declined')">
-
-                        Analyze
-
-                        </button>
-
-                    </td>
-
-                </tr>
+                </tbody>
 
             </table>
 
         </div>
 
-
-        <!-- AI RECOVERY PANEL -->
-
-        <div class="ai-panel" id="aiPanel">
-
-            <div class="ai-header">
-
-                <h2>🤖 AI Recovery Analysis</h2>
-
-                <button
-                class="close-btn"
-                onclick="closePanel()">
-
-                Close
-
-                </button>
-
-            </div>
+    </div>
 
 
-            <div class="ai-info">
+    <!-- AI RECOVERY PANEL -->
 
-                <div class="info-box">
+    <div class="ai-panel" id="aiPanel">
 
-                    <span>Customer</span>
+        <div class="ai-header">
 
-                    <strong id="customer"></strong>
+            <h2>🤖 AI Recovery Analysis</h2>
 
-                </div>
+            <button
+            class="close-btn"
+            onclick="closePanel()">
+
+            Close
+
+            </button>
+
+        </div>
 
 
-                <div class="info-box">
+        <div class="ai-info">
 
-                    <span>Amount</span>
+            <div class="info-box">
 
-                    <strong id="amount"></strong>
+                <span>Customer</span>
 
-                </div>
-
-
-                <div class="info-box">
-
-                    <span>Failure Reason</span>
-
-                    <strong id="reason"></strong>
-
-                </div>
+                <strong id="customer"></strong>
 
             </div>
 
 
-            <div class="recommendation">
+            <div class="info-box">
 
-                <h3>Recovery Recommendation</h3>
+                <span>Amount</span>
 
-                <p>
-                    Recovery Probability: <strong>78%</strong>
-                </p>
-
-                <br>
-
-                <p>
-                    Recommended Action:
-                    Ask the customer to retry the payment after a short interval.
-                </p>
+                <strong id="amount"></strong>
 
             </div>
 
 
-            <div class="message"> <div id="analysis" style="margin-top:20px;"></div>
-<div id="status" style="margin-top:15px;">
-    <strong>Recovery Status:</strong>
-    <span style="color:orange;">Pending</span>
-</div>
-                <button
-    onclick="sendRecoveryReminder()"
-    style="margin-top:20px; padding:12px 20px; border:none; border-radius:8px; cursor:pointer;">
-    📩 Send Recovery Reminder
-</button>
+            <div class="info-box">
 
-<p id="reminderStatus" style="margin-top:12px;"></p>
-                <h3>Suggested Customer Message</h3>
+                <span>Failure Reason</span>
 
-                <p id="message"></p>
+                <strong id="reason"></strong>
 
             </div>
+
+        </div>
+
+
+        <div class="recommendation">
+
+            <h3>Recovery Recommendation</h3>
+
+            <div id="analysis"></div>
+
+        </div>
+
+
+        <div class="message">
+
+            <div class="status" id="status">
+
+                <strong>Recovery Status:</strong>
+
+                <span style="color:orange;">
+                    Pending
+                </span>
+
+            </div>
+
+
+            <button
+            class="action-btn"
+            onclick="sendRecoveryReminder()">
+
+            📩 Send Recovery Reminder
+
+            </button>
+
+
+            <p
+            id="reminderStatus"
+            style="margin-top:12px;">
+            </p>
+
+
+            <h3>Suggested Customer Message</h3>
+
+            <p id="message"></p>
 
         </div>
 
@@ -616,121 +765,251 @@ th {
 
 </div>
 
+</div>
 
-<script> 
-    let customerCount = 24;
+
+<script>
+
+let customerCount = 24;
+
 let highPriorityCount = 8;
+
 let reminderCount = 16;
+
+
+/* ANALYZE PAYMENT */
 
 function analyzePayment(customer, amount, reason) {
 
-    document.getElementById("customer").innerText = customer;
+    document.getElementById("customer").innerText =
+        customer;
 
-    document.getElementById("amount").innerText = amount;
+    document.getElementById("amount").innerText =
+        amount;
 
-    document.getElementById("reason").innerText = reason;
+    document.getElementById("reason").innerText =
+        reason;
 
+
+    /* CUSTOMER MESSAGE */
 
     let message =
-        "Hi " + customer.split(" ")[0] +
-        ", your payment of " + amount +
+        "Hi " +
+        customer.split(" ")[0] +
+        ", your payment of " +
+        amount +
         " could not be completed. " +
         "Please retry your payment using the secure payment link.";
 
-    document.getElementById("message").innerText = message;
+    document.getElementById("message").innerText =
+        message;
 
 
-    // AI Recovery Analysis
+    /* AI ANALYSIS */
+
     let priority;
-    let riskScore;
-    let action;
-customerCount++;
 
-document.getElementById("customerCount").innerText = customerCount;
+    let riskScore;
+
+    let action;
+
+
+    /* UPDATE CUSTOMER COUNT */
+
+    customerCount++;
+
+    document.getElementById("customerCount").innerText =
+        customerCount;
+
+
+    /* GET NUMERIC AMOUNT */
+
     let numericAmount =
-        parseFloat(String(amount).replace(/[^0-9.]/g, ""));
+        parseFloat(
+            String(amount).replace(/[^0-9.]/g, "")
+        );
+
+
+    /* PRIORITY LOGIC */
 
     if (numericAmount >= 50000) {
+
         priority = "HIGH";
+
         riskScore = 85;
-        action = "Immediate recovery follow-up";
+
+        action =
+            "Immediate recovery follow-up";
+
+
         highPriorityCount++;
-document.getElementById("highPriorityCount").innerText = highPriorityCount;
+
+        document.getElementById("highPriorityCount").innerText =
+            highPriorityCount;
+
     }
+
     else if (numericAmount >= 20000) {
+
         priority = "MEDIUM";
+
         riskScore = 60;
-        action = "Send reminder and follow-up";
+
+        action =
+            "Send reminder and follow-up";
+
     }
+
     else {
+
         priority = "LOW";
+
         riskScore = 30;
-        action = "Send automated reminder";
+
+        action =
+            "Send automated reminder";
+
     }
 
 
-    // Add AI analysis to the panel
-    let analysis = document.getElementById("analysis");
+    /* DISPLAY AI ANALYSIS */
+
+    let analysis =
+        document.getElementById("analysis");
+
 
     if (analysis) {
+
         analysis.innerHTML =
-            "<strong>Recovery Priority:</strong> " + priority +
-            "<br><strong>Risk Score:</strong> " + riskScore + "/100" +
-            "<br><strong>Recommended Action:</strong> " + action;
+
+            "<strong>Recovery Priority:</strong> " +
+            priority +
+
+            "<br><strong>Risk Score:</strong> " +
+            riskScore +
+            "/100" +
+
+            "<br><strong>Recommended Action:</strong> " +
+            action;
+
     }
 
-let historyTable = document.getElementById("historyTable");
 
-let row = document.createElement("tr");
+    /* ADD HISTORY ROW */
 
-row.innerHTML =
-    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
-    customer +
-    "</td>" +
+    let historyTable =
+        document.getElementById("historyTable");
 
-    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
-    amount +
-    "</td>" +
 
-    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
-    priority +
-    "</td>" +
+    let row =
+        document.createElement("tr");
 
-    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
-    riskScore +
-    "/100" +
-    "</td>" +
 
-    "<td style='padding:12px; border-bottom:1px solid #eee;'>" +
-    "Pending" +
-    "</td>";
+    row.innerHTML =
 
-historyTable.appendChild(row);
-    document.getElementById("aiPanel").style.display = "block";
+        "<td>" +
+        customer +
+        "</td>" +
+
+        "<td>" +
+        amount +
+        "</td>" +
+
+        "<td>" +
+        priority +
+        "</td>" +
+
+        "<td>" +
+        riskScore +
+        "/100" +
+        "</td>" +
+
+        "<td>Pending</td>";
+
+
+    historyTable.appendChild(row);
+
+
+    row.dataset.status =
+        "Pending";
+
+
+    /* SHOW AI PANEL */
+
+    document.getElementById("aiPanel").style.display =
+        "block";
+
 
     window.scrollTo({
-        top: document.body.scrollHeight,
-        behavior: "smooth"
+
+        top:
+            document.body.scrollHeight,
+
+        behavior:
+            "smooth"
+
     });
 
 }
+
+
+/* CLOSE AI PANEL */
+
 function closePanel() {
 
-    document.getElementById("aiPanel").style.display = "none";
+    document.getElementById("aiPanel").style.display =
+        "none";
 
-}  
- 
+}
+
+
+/* SEND RECOVERY REMINDER */
+
 function sendRecoveryReminder() {
+
     reminderCount++;
 
-document.getElementById("reminderCount").innerText = reminderCount;
+
+    document.getElementById("reminderCount").innerText =
+        reminderCount;
+
 
     document.getElementById("reminderStatus").innerText =
         "✅ Recovery reminder sent successfully!";
 
+
     document.getElementById("status").innerHTML =
+
         "<strong>Recovery Status:</strong> " +
-        "<span style='color:green;'>Reminder Sent</span>";
+
+        "<span style='color:green;'>" +
+        "Reminder Sent" +
+        "</span>";
+
+
+    /* UPDATE LATEST HISTORY ROW */
+
+    let historyTable =
+        document.getElementById("historyTable");
+
+
+    if (historyTable.lastElementChild) {
+
+        let lastRow =
+            historyTable.lastElementChild;
+
+
+        lastRow.dataset.status =
+            "Reminder Sent";
+
+
+        lastRow.cells[4].innerHTML =
+
+            "<span style='color:green;'>" +
+            "Reminder Sent" +
+            "</span>";
+
+    }
 
 }
 
