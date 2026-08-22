@@ -560,6 +560,42 @@ function analyzePayment(customer, amount, reason) {
     document.getElementById("message").innerText = message;
 
 
+    // AI Recovery Analysis
+    let priority;
+    let riskScore;
+    let action;
+
+    let numericAmount =
+        parseFloat(String(amount).replace(/[^0-9.]/g, ""));
+
+    if (numericAmount >= 50000) {
+        priority = "HIGH";
+        riskScore = 85;
+        action = "Immediate recovery follow-up";
+    }
+    else if (numericAmount >= 20000) {
+        priority = "MEDIUM";
+        riskScore = 60;
+        action = "Send reminder and follow-up";
+    }
+    else {
+        priority = "LOW";
+        riskScore = 30;
+        action = "Send automated reminder";
+    }
+
+
+    // Add AI analysis to the panel
+    let analysis = document.getElementById("analysis");
+
+    if (analysis) {
+        analysis.innerHTML =
+            "<strong>Recovery Priority:</strong> " + priority +
+            "<br><strong>Risk Score:</strong> " + riskScore + "/100" +
+            "<br><strong>Recommended Action:</strong> " + action;
+    }
+
+
     document.getElementById("aiPanel").style.display = "block";
 
     window.scrollTo({
@@ -568,8 +604,6 @@ function analyzePayment(customer, amount, reason) {
     });
 
 }
-
-
 function closePanel() {
 
     document.getElementById("aiPanel").style.display = "none";
